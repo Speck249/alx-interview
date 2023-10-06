@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Module presents solution to
+unlock a number of locked boxes.
+"""
+
 
 def canUnlockAll(boxes):
     """
