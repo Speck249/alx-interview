@@ -7,7 +7,7 @@ unlock a number of locked boxes.
 
 def canUnlockAll(boxes):
     """
-    Method determines if n number of 
+    Method determines if n number of
     locked boxes can be opened.
     """
     num_boxes = len(boxes)
