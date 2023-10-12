@@ -5,6 +5,7 @@ of operations needed to result
 in exactly n H characters in a file.
 """
 
+
 def minOperations(n):
     """
     Method Returns an integer
@@ -17,7 +18,7 @@ def minOperations(n):
     while current < n:
         if n % current == 0:
             clipboard = current
-        operations += 1
+        operations += 2
         current += clipboard
 
     if current == n:
