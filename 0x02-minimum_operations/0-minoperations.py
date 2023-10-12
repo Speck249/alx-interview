@@ -11,17 +11,17 @@ def minOperations(n):
     Method Returns an integer
     If n is impossible to achieve, returns 0
     """
-    operations = 0
-    current = 1
-    clipboard = 0
-
-    while current < n:
-        if n % current == 0:
-            clipboard = current
-        operations += 2
-        current += clipboard
-
-    if current == n:
-        return operations
-    else:
+    if n < 2:
         return 0
+
+    operations = 0
+    current = 2
+
+    while current <= n:
+        if n % current == 0:
+            operations += current
+            n = n // current
+            current -= 1
+        current += 1
+
+    return operations
