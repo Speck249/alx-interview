@@ -6,7 +6,7 @@ import sys
 def print_msg(status_codes, total_file_size):
     """
     Prints the status codes and total file size.
-    
+ 
     Args:
         status_codes (dict): Dictionary of status codes.
         total_file_size (int): Total file size.
