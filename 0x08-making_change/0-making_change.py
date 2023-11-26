@@ -1,7 +1,7 @@
 #!/usr/python3
 """
 Module determines fewest coins
-needed to meet given amount total
+needed to meet a given amount total
 """
 
 def makeChange(coins, total):
