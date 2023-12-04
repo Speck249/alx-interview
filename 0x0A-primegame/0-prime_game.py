@@ -13,12 +13,15 @@ def isWinner(x, nums):
     def is_prime(num):
         if num < 2:
             return False
-        for i in range(2, int(num**0.5) + 1):
+        for i in range(2, int(num ** 0.5) + 1):
             if num % i == 0:
                 return False
         return True
 
     def get_primes_up_to_n(n):
+        """
+        Build a list of Prime numbers
+        """
         primes = []
         for i in range(2, n + 1):
             if is_prime(i):
@@ -39,7 +42,9 @@ def isWinner(x, nums):
             maria_turn = not maria_turn
 
         return 'Maria' if not maria_turn else 'Ben'
-
+    """
+    Play each round and count wins.
+    """
     maria_wins = 0
     ben_wins = 0
 
@@ -49,7 +54,9 @@ def isWinner(x, nums):
             maria_wins += 1
         elif winner == 'Ben':
             ben_wins += 1
-
+    """
+    Determine the winner of the game.
+    """
     if maria_wins > ben_wins:
         return 'Maria'
     elif maria_wins < ben_wins:
