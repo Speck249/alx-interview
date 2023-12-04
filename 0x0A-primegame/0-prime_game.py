@@ -1,47 +1,58 @@
 #!/usr/bin/python3
 """
-Determine the winner of
-the Prime Game.
+Determine winner of
+Prime Game.
 """
 
 
 def isWinner(x, nums):
     """
-    Function check if number is prime.
+    Method determines the winner
+    of a Prime Game.
     """
-    def is_prime(n):
-        if n < 2:
+    def is_prime(num):
+        if num < 2:
             return False
-        for i in range(2, int(n ** 0.5) + 1):
-            if n % i == 0:
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
                 return False
         return True
 
-    def get_next_prime(n):
-        n += 1
-        while not is_prime(n):
-            n += 1
-        return n
+    def get_primes_up_to_n(n):
+        primes = []
+        for i in range(2, n + 1):
+            if is_prime(i):
+                primes.append(i)
+        return primes
 
-    def determine_round_winner(n):
-        prime = 2  # Start with the first prime number
-        while prime <= n:
-            n -= n // prime
-            prime = get_next_prime(prime)
-        return "Maria" if n % 2 == 0 else "Ben"
+    def play_round(n):
+        primes = get_primes_up_to_n(n)
+        maria_turn = True
+
+        while primes:
+            if maria_turn:
+                selected = min(primes)
+            else:
+                selected = max(primes)
+
+            primes = [num for num in primes if num % selected != 0]
+            maria_turn = not maria_turn
+
+        return 'Maria' if not maria_turn else 'Ben'
 
     maria_wins = 0
     ben_wins = 0
+
     for n in nums:
-        winner = determine_round_winner(n)
-        if winner == "Maria":
+        winner = play_round(n)
+        if winner == 'Maria':
             maria_wins += 1
-        elif winner == "Ben":
+        elif winner == 'Ben':
             ben_wins += 1
 
     if maria_wins > ben_wins:
-        return "Maria"
+        return 'Maria'
     elif maria_wins < ben_wins:
-        return "Ben"
+        return 'Ben'
     else:
         return None
