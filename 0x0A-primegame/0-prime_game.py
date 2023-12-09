@@ -41,8 +41,7 @@ def isWinner(x, nums):
             primes = [num for num in primes if num % selected != 0]
             maria_turn = not maria_turn
 
-        return 'Maria' if maria_turn else 'Ben'
-
+        return 'Maria' if not maria_turn else 'Ben'
     """
     Play each round and count wins.
     """
@@ -55,7 +54,6 @@ def isWinner(x, nums):
             maria_wins += 1
         elif winner == 'Ben':
             ben_wins += 1
-
     """
     Determine the winner of the game.
     """
