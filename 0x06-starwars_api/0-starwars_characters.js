@@ -20,4 +20,3 @@ async function getCharacterNames(starWarID) {
 
 const starWarID = process.argv[2];
 getCharacterNames(starWarID);
-
