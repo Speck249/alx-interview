@@ -1,62 +1,74 @@
 #!/usr/bin/python3
 """
-Solve the N queens problem.
+Solution for N queens problem
 """
 import sys
 
 
-def is_safe(board, row, col):
+def find_chessboard_solution(rows, col):
     """
-    Validate a queen in the same column
+    Solve N x N chessboard
     """
-    for i in range(row):
-        if board[i] == col:
-            return False
+    solution = [[]]
+    for chess_piece in range(rows):
+        solution = position_chess_piece(chess_piece, col, solution)
+    return solution
 
+
+def position_chess_piece(chess_piece, col, initial_output):
     """
-    Validate a queen in the same diagonal
+    Place chess piece at a certain position
     """
-    for i in range(row):
-        if abs(board[i] - col) == abs(i - row):
-            return False
-
-    return True
-
-
-def solve_nqueens(n, board, row):
-    if row == n:
-        print([[i, board[i]] for i in range(n)])
-        return
-
-    for col in range(n):
-        if is_safe(board, row, col):
-            board[row] = col
-            solve_nqueens(n, board, row + 1)
+    safe_positions = []
+    for arrangement in initial_output:
+        for i in range(col):
+            if is_safe(chess_piece, i, arrangement):
+                safe_positions.append(arrangement + [i])
+    return safe_positions
 
 
-if __name__ == "__main__":
+def is_safe(chess_piece, i, arrangement):
     """
-    Validate the number of arguments
+    Validate safe move
+    """
+    return not any(abs(arrangement[column] - i)
+                   == chess_piece - column or i
+                   == arrangement[column]
+                   for column in range(chess_piece))
+
+
+def initialize_chess_game():
+    """
+    Initialize chess game
     """
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-
-    """
-    Validate value of N from cli
-    """
-    try:
-        n = int(sys.argv[1])
-    except ValueError:
+    if sys.argv[1].isdigit():
+        n_rows = int(sys.argv[1])
+    else:
         print("N must be a number")
         sys.exit(1)
-
-    """
-    Validate value of N
-    """
-    if n < 4:
+    if n_rows < 4:
         print("N must be at least 4")
         sys.exit(1)
+    return n_rows
 
-    board = [-1] * n
-    solve_nqueens(n, board, 0)
+
+def main():
+    """
+    Main entry point of program
+    """
+    rows_count = initialize_chess_game()
+    solutions = find_chessboard_solution(rows_count, rows_count)
+    output = []
+    for arrangement in solutions:
+        output.append([[chess_piece, i] for chess_piece, i in
+                       enumerate(arrangement)])
+    return output
+
+
+if __name__ == '__main__':
+    result = main()
+    for clean in result:
+        print(clean)
