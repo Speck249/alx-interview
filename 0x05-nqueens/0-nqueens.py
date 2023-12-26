@@ -7,14 +7,14 @@ import sys
 
 def is_safe(board, row, col):
     """
-    Validate queen in the same column
+    Validate a queen in the same column
     """
     for i in range(row):
         if board[i] == col:
             return False
 
     """
-    Validate queen in the same diagonal
+    Validate a queen in the same diagonal
     """
     for i in range(row):
         if abs(board[i] - col) == abs(i - row):
@@ -34,14 +34,14 @@ def solve_nqueens(n, board, row):
 
 if __name__ == "__main__":
     """
-    Check number of arguments
+    Validate the number of arguments
     """
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
 
     """
-    Retrieve value of N from cli
+    Validate value of N from cli
     """
     try:
         n = int(sys.argv[1])
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     """
-    Check value of N
+    Validate value of N
     """
     if n < 4:
         print("N must be at least 4")
