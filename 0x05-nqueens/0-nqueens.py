@@ -22,6 +22,7 @@ def is_safe(board, row, col):
 
     return True
 
+
 def solve_nqueens(n, board, row):
     if row == n:
         print([[i, board[i]] for i in range(n)])
@@ -31,6 +32,7 @@ def solve_nqueens(n, board, row):
         if is_safe(board, row, col):
             board[row] = col
             solve_nqueens(n, board, row + 1)
+
 
 if __name__ == "__main__":
     """
